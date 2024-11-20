@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Posting Page</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: gray;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header Section */
+        .header {
+            background-color: rgb(7, 46, 46);
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 25px;
+            background: linear-gradient(145deg, #222, #1a1a1a);
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        /* Form Section Enhancements */
+        .job-form {
+            background: linear-gradient(145deg, #1a1a1a, #121212);
+            padding: 20px 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
+        }
+
+        .job-form h2 {
+            text-align: center;
+            color: #90ee90;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .job-form label {
+            display: block;
+            font-size: 1.1rem;
+            margin: 10px 0 5px;
+            color: #90ee90;
+        }
+
+        .job-form input,
+        .job-form textarea,
+        .job-form select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background-color: #222;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .job-form input:focus,
+        .job-form textarea:focus,
+        .job-form select:focus {
+            border-color: #90ee90;
+            outline: none;
+        }
+
+        .job-form button {
+            display: inline-block;
+            width: 100%;
+            padding: 12px 0;
+            background-color: #0f3d0f;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .job-form button:hover {
+            background-color: #0c301e;
+            transform: translateY(-2px);
+        }
+
+        .job-form button:active {
+            transform: translateY(0);
+        }
+
+        /* Job Listings Styling */
+        .job-listing {
+            margin-top: 40px;
+        }
+
+        .job-card {
+            background: #1e1e1e;
+            border: 1px solid #90ee90;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .job-card h3 {
+            margin: 0 0 10px;
+            color: #90ee90;
+            font-size: 1.5rem;
+        }
+
+        .job-card p {
+            margin: 5px 0;
+            font-size: 1rem;
+            color: #ccc;
+        }
+
+        .job-card .actions {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+
+        .job-card .actions button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            margin-left: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .job-card .actions button:hover {
+            background-color: #0a291a;
+        }
+
+        .apply-btn {
+            display: block;
+            background-color: aqua;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .apply-btn:hover {
+            background-color: #0f3d0f;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Job Posting Portal</h1>
+    </div>
+
+    <div class="container">
+        <div class="job-form">
+            <h2>Post a Job</h2>
+            <form id="jobForm">
+                <label for="jobTitle">Job Title</label>
+                <input type="text" id="jobTitle" placeholder="Enter job title" required>
+
+                <label for="jobCategory">Job Category</label>
+                <select id="jobCategory">
+                    <option value="Graphic Designing">Graphic Designing</option>
+                    <option value="Web Development">Web Development</option>
+                    <option value="Content Writing">Content Writing</option>
+                    <option value="Digital Marketing">Digital Marketing</option>
+                    <option value="UI/UX Design">UI/UX Design</option>
+                    <option value="Data Entry">Data Entry</option>
+                    <option value="Sales">Sales</option>
+                    <option value="Customer Support">Customer Support</option>
+                    <option value="Video Editing">Video Editing</option>
+                    <option value="Product Management">Product Management</option>
+                    <option value="Software Testing">Software Testing</option>
+                </select>
+
+                <label for="jobDescription">Job Description</label>
+                <textarea id="jobDescription" rows="5" placeholder="Write a brief description of the job" required></textarea>
+
+                <button type="submit">Post Job</button>
+            </form>
+        </div>
+
+        <div class="job-listing">
+            <h2>Available Jobs</h2>
+            <div id="jobCardsContainer"></div>
+        </div>
+    </div>
+
+    <script>
+        const jobForm = document.getElementById('jobForm');
+        const jobCardsContainer = document.getElementById('jobCardsContainer');
+
+        const loadJobs = () => {
+            const jobs = JSON.parse(localStorage.getItem('jobs')) || [];
+            jobCardsContainer.innerHTML = '';
+            jobs.forEach((job, index) => {
+                createJobCard(job, index);
+            });
+        };
+
+        const saveJobs = (jobs) => {
+            localStorage.setItem('jobs', JSON.stringify(jobs));
+        };
+
+        const createJobCard = (job, index) => {
+            const jobCard = document.createElement('div');
+            jobCard.classList.add('job-card');
+            jobCard.innerHTML = `
+                <h3>${job.title}</h3>
+                <p><strong>Category:</strong> ${job.category}</p>
+                <p>${job.description}</p>
+                <div class="actions">
+                    <button onclick="editJob(${index})">Edit</button>
+                    <button onclick="deleteJob(${index})">Delete</button>
+                </div>
+                <button class="apply-btn" onclick="applyJob(${index})">Apply</button>
+            `;
+            jobCardsContainer.appendChild(jobCard);
+        };
+
+        jobForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const title = document.getElementById('jobTitle').value;
+            const category = document.getElementById('jobCategory').value;
+            const description = document.getElementById('jobDescription').value;
+
+            const jobs = JSON.parse(localStorage.getItem('jobs')) || [];
+            jobs.push({ title, category, description, applicants: [] });
+            saveJobs(jobs);
+            loadJobs();
+            jobForm.reset();
+        });
+
+        const editJob = (index) => {
+            const jobs = JSON.parse(localStorage.getItem('jobs')) || [];
+            const job = jobs[index];
+            document.getElementById('jobTitle').value = job.title;
+            document.getElementById('jobCategory').value = job.category;
+            document.getElementById('jobDescription').value = job.description;
+            jobs.splice(index, 1);
+            saveJobs(jobs);
+            loadJobs();
+        };
+
+        const deleteJob = (index) => {
+            const jobs = JSON.parse(localStorage.getItem('jobs')) || [];
+            jobs.splice(index, 1);
+            saveJobs(jobs);
+            loadJobs();
+        };
+
+        const applyJob = (index) => {
+            alert(`You have applied for job #${index + 1}`);
+        };
+
+        loadJobs();
+    </script>
+</body>
+</html>

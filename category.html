@@ -1,0 +1,294 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobPortal.pk - Categories</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: gray;
+        }
+
+        /* Header Section */
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+        }
+
+        header .container {
+            width: 80%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo h1 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        header nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        header nav ul li {
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        header nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Categories Section */
+        .categories-container {
+            width: 80%;
+            margin: 50px auto;
+            padding: 50px 0;
+            background-color: rgb(22, 22, 22);
+            text-align: center;
+        }
+
+        .categories-container h2 {
+            margin-bottom: 40px;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .categories-list {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .category-item {
+            background-color: #28a745;
+            color: white;
+            padding: 30px;
+            margin: 10px;
+            border-radius: 5px;
+            width: 200px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .category-item:hover {
+            background-color: #218838;
+        }
+
+        /* Job Listings Section */
+        .job-listing-container {
+            display: none;
+            width: 80%;
+            margin: 0 auto;
+            padding: 50px 0;
+            background-color: white;
+        }
+
+        .job-listing-container h2 {
+            margin-bottom: 40px;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .job-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .job-card {
+            background-color: #fff;
+            padding: 20px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: calc(33.333% - 20px); /* 3 cards per row */
+            text-align: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .job-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .job-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .job-card p {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .job-card button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer .footer-links ul {
+            list-style: none;
+        }
+
+        footer .footer-links ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        footer .footer-links ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        footer p {
+            margin-top: 20px;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Job Portal for Pakistan</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#">Post a Job</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Categories Section -->
+    <section class="categories-container">
+        <h2>Browse Job Categories</h2>
+        <div class="categories-list">
+            <div class="category-item" onclick="showCategory('it')">IT</div>
+            <div class="category-item" onclick="showCategory('healthcare')">Healthcare</div>
+            <div class="category-item" onclick="showCategory('education')">Education</div>
+            <div class="category-item" onclick="showCategory('engineering')">Engineering</div>
+            <div class="category-item" onclick="showCategory('graphic-designing')">Graphic Designing</div>
+            <div class="category-item" onclick="showCategory('web-development')">Web Development</div>
+        </div>
+    </section>
+
+    <!-- IT Jobs Listings Section -->
+    <section id="it-jobs" class="job-listing-container">
+        <h2>Browse IT Jobs</h2>
+        <div class="job-list" id="it-jobs-list">
+            <!-- Sample Jobs -->
+            <div class="job-card">
+                <img src="https://via.placeholder.com/150" alt="Software Developer">
+                <h4>Software Developer</h4>
+                <p>Location: Karachi</p>
+                <button>Apply Now</button>
+            </div>
+            <div class="job-card">
+                <img src="https://via.placeholder.com/150" alt="System Analyst">
+                <h4>System Analyst</h4>
+                <p>Location: Lahore</p>
+                <button>Apply Now</button>
+            </div>
+            <div class="job-card">
+                <img src="https://via.placeholder.com/150" alt="Web Developer">
+                <h4>Web Developer</h4>
+                <p>Location: Islamabad</p>
+                <button>Apply Now</button>
+            </div>
+            <div class="job-card">
+                <img src="https://via.placeholder.com/150" alt="Mobile App Developer">
+                <h4>Mobile App Developer</h4>
+                <p>Location: Multan</p>
+                <button>Apply Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Healthcare Jobs Listings Section -->
+    <section id="healthcare-jobs" class="job-listing-container">
+        <h2>Browse Healthcare Jobs</h2>
+        <div class="job-list" id="healthcare-jobs-list">
+            <div class="job-card">
+                <img src="https://via.placeholder.com/150" alt="Doctor">
+                <h4>Doctor</h4>
+                <p>Location: Karachi</p>
+                <button>Apply Now</button>
+            </div>
+            <div class="job-card">
+                <img src="https://via.placeholder.com/150" alt="Nurse">
+                <h4>Nurse</h4>
+                <p>Location: Lahore</p>
+                <button>Apply Now</button>
+            </div>
+            <div class="job-card">
+                <img src="https://via.placeholder.com/150" alt="Pharmacist">
+                <h4>Pharmacist</h4>
+                <p>Location: Islamabad</p>
+                <button>Apply Now</button>
+            </div>
+            <div class="job-card">
+                <img src="https://via.placeholder.com/150" alt="Medical Technician">
+                <h4>Medical Technician</h4>
+                <p>Location: Peshawar</p>
+                <button>Apply Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Jobs Listings Section -->
+    <section id="education-jobs" class="job-listing-container">
+        <h2>Browse Education Jobs</h2>
+        <div class="job-list" id="education-jobs-list">
+            <div class="job-card">
+                <img src="https://via.placeholder.com/150" alt="Teacher">
+                <h4>Teacher</h4>
+                <p>Location: Karachi</p>
+                <button>Apply Now</button>
+            </div>
+            <div class="job-card">
+                <img src="https://via.placeholder.com/150" alt="Principal">
+                <h4>Principal</h

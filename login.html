@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Portal with Login</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: gray;
+            color: #fff;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Header Section */
+        .header {
+            background-color: rgb(4, 36, 36);
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        /* Login Form */
+        .login-container, .container {
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 25px;
+            background: linear-gradient(145deg, #222, #1a1a1a);
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .login-container h2, .container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #90ee90;
+        }
+
+        .login-container form, .job-form form {
+            margin-bottom: 20px;
+        }
+
+        .login-container label, .job-form label {
+            display: block;
+            font-size: 1.1rem;
+            margin: 10px 0 5px;
+        }
+
+        .login-container input, .job-form input, .job-form select, .job-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background-color: #222;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #0f3d0f;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #118c4f;
+        }
+
+        /* Job Listing Section */
+        .job-listing {
+            margin-top: 20px;
+        }
+
+        .job-card {
+            background: #1e1e1e;
+            border: 1px solid #90ee90;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .job-card h3 {
+            color: #90ee90;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Job Portal</h1>
+    </div>
+
+    <!-- Login/Signup Section -->
+    <div class="login-container" id="loginSection">
+        <h2 id="formTitle">Login</h2>
+        <form id="authForm">
+            <label for="email">Email</label>
+            <input type="email" id="email" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" required>
+
+            <button type="submit" id="submitBtn">Login</button>
+        </form>
+        <p id="toggleText">Don't have an account? <a id="toggleForm">Sign Up</a></p>
+    </div>
+
+    <!-- Job Portal Section -->
+    <div class="container hidden" id="jobPortal">
+        <div class="job-form">
+            <h2>Post a Job</h2>
+            <form id="jobForm">
+                <label for="jobTitle">Job Title</label>
+                <input type="text" id="jobTitle" required>
+
+                <label for="jobCategory">Job Category</label>
+                <select id="jobCategory">
+                    <option value="Graphic Designing">Graphic Designing</option>
+                    <option value="Web Development">Web Development</option>
+                    <option value="Content Writing">Content Writing</option>
+                </select>
+
+                <label for="jobDescription">Job Description</label>
+                <textarea id="jobDescription" rows="4" required></textarea>
+
+                <button type="submit">Post Job</button>
+            </form>
+        </div>
+        <div class="job-listing">
+            <h2>Available Jobs</h2>
+            <div id="jobCardsContainer"></div>
+        </div>
+    </div>
+
+    <script>
+        // Login/Signup Logic
+        const loginSection = document.getElementById('loginSection');
+        const jobPortal = document.getElementById('jobPortal');
+        const formTitle = document.getElementById('formTitle');
+        const toggleText = document.getElementById('toggleText');
+        const toggleForm = document.getElementById('toggleForm');
+        const authForm = document.getElementById('authForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+
+        let isLogin = true;
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        let loggedInUser = localStorage.getItem('loggedInUser');
+
+        const updateUI = () => {
+            if (loggedInUser) {
+                loginSection.classList.add('hidden');
+                jobPortal.classList.remove('hidden');
+            }
+        };
+
+        toggleForm.addEventListener('click', () => {
+            isLogin = !isLogin;
+            formTitle.textContent = isLogin ? 'Login' : 'Sign Up';
+            submitBtn.textContent = isLogin ? 'Login' : 'Sign Up';
+            toggleText.innerHTML = isLogin
+                ? "Don't have an account? <a id='toggleForm'>Sign Up</a>"
+                : "Already have an account? <a id='toggleForm'>Login</a>";
+        });
+
+        authForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = emailInput.value;
+            const password = passwordInput.value;
+
+            if (isLogin) {
+                const user = users.find((u) => u.email === email && u.password === password);
+                if (user) {
+                    localStorage.setItem('loggedInUser', email);
+                    loggedInUser = email;
+                    updateUI();
+                } else {
+                    alert('Invalid credentials!');
+                }
+            } else {
+                if (users.some((u) => u.email === email)) {
+                    alert('User already exists!');
+                } else {
+                    users.push({ email, password });
+                    localStorage.setItem('users', JSON.stringify(users));
+                    alert('Signup successful! You can now login.');
+                    isLogin = true;
+                    formTitle.textContent = 'Login';
+                    submitBtn.textContent = 'Login';
+                }
+            }
+        });
+
+        // Job Posting Logic
+        const jobForm = document.getElementById('jobForm');
+        const jobCardsContainer = document.getElementById('jobCardsContainer');
+
+        const loadJobs = () => {
+            const jobs = JSON.parse(localStorage.getItem('jobs')) || [];
+            jobCardsContainer.innerHTML = '';
+            jobs.forEach((job) => {
+                const jobCard = document.createElement('div');
+                jobCard.classList.add('job-card');
+                jobCard.innerHTML = `
+                    <h3>${job.title}</h3>
+                    <p><strong>Category:</strong> ${job.category}</p>
+                    <p>${job.description}</p>
+                `;
+                jobCardsContainer.appendChild(jobCard);
+            });
+        };
+
+        jobForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const title = document.getElementById('jobTitle').value;
+            const category = document.getElementById('jobCategory').value;
+            const description = document.getElementById('jobDescription').value;
+
+            const jobs = JSON.parse(localStorage.getItem('jobs')) || [];
+            jobs.push({ title, category, description });
+            localStorage.setItem('jobs', JSON.stringify(jobs));
+            loadJobs();
+            jobForm.reset();
+        });
+
+        updateUI();
+        loadJobs();
+    </script>
+</body>
+</html>
